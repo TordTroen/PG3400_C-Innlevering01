@@ -1,0 +1,14 @@
+#include<stdio.h>
+
+int main(int argc, char *argv[])
+{
+	FILE* f = fopen ("1.txt" , "r");
+	int i = 0;
+	fscanf (f, "%d", &i); // Fjerner det første (i filen 1.txt er det 42
+	while (!feof (f))
+	{
+		fscanf (f, "%d", &i);
+		printf("%d", i);
+	}
+	fclose (f);
+}
