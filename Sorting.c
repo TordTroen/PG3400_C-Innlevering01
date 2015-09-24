@@ -10,7 +10,7 @@ void printList(int list[200000], int length)
 
 int main(int argc, char *argv[])
 {
-	FILE* f = fopen ("Test.txt" , "r");
+	FILE* f = fopen ("1.txt" , "r");
 	int i = 0;
 	int size = 0;
 	int list[200000];
@@ -26,26 +26,27 @@ int main(int argc, char *argv[])
 	printf("\n");
 	printf("Size: %d\n", size);
 	fclose (f);
-
+	int keepSorting = 1;
 	i = 0;
-	while(i < size)
+	int j = 0;
+	while(keepSorting != 0)
 	{
-		int j = 0;
-		while (j < size)
+//		printf("outer_while[%d]\n", j);
+		keepSorting = 0;
+		i = 0;
+		while (i < size - 1)
 		{
-			if (list[j] > list[j + 1])
+			if (list[i] > list[i + 1])
 			{
-				int temp = list[j + 1];
-				list[j + 1] = list[j];
-				list[j] = temp;
-				/*int a = list[j];
-				int b = list[j + 1];
-				list[j] = b;
-				list[j + 1] = a;*/
+				int temp = list[i];
+				list[i] = list[i+1];
+				list[i+1] = temp;
+				keepSorting = 1;
 			}
-			j ++;
+			i ++;
 		}
-		i++;
+		j++;
 	}
+	printf("\n");
 	printList(list, size);
 }
