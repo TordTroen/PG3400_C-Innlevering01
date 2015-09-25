@@ -4,7 +4,6 @@
 void printList(int list[], int length);
 void readFileContent(char *fileName, int *length, int *list);
 void bubbleSort(int *list, int length);
-void searchList(int list[], int length);
 
 int main(int argc, char *argv[])
 {
@@ -21,9 +20,6 @@ int main(int argc, char *argv[])
 
 	// Print the list
 	printList(list, length);
-
-	// Searching for int
-	searchList(list, length);
 }
 
 void readFileContent(char *fileName, int *length, int *list)
@@ -76,32 +72,4 @@ void printList(int list[], int length)
 	{
 		printf("List[%d]=%d\n", i, list[i]);
 	}
-}
-
-void searchList(int list[], int length)
-{
-	int search;
-	int low = 0;
-	int high = length - 1;
-	int mid = (low+high)/2;
-
-	printf("Please input an integer for search\n");
-	scanf("%d", &search);
-
-	if (search == 0)
-                        exit(0);
-
-	while (low <= high) {
-		if (list[mid] < search)
-			low = mid + 1;
-		else if (list[mid] == search) {
-			printf("The integer(%d) is at location: %d\n", search, mid+1);
-			break;
-		}
-		else
-			high = mid - 1;
-			mid = (low + high)/2;
-		}
-		if (low > high)
-			printf("Integer not found\n");
 }
