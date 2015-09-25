@@ -9,50 +9,59 @@ void searchList(int list[], int length);
 
 int main(int argc, char *argv[])
 {
-	int length = 5; // Length of the list
-	//int list[200000]; // The list to be sorted
-	int *list;//, size = 5;
-	list = (int*)malloc(length*sizeof(int));
+	int *list, count = 5;
+	list = (int*)malloc(count*sizeof(int));
+
 	// Read numbers from file to list
-	//readFileContent("1.txt", &length, list);
-	FILE* f = fopen ("1.txt" , "r");
-	int num = 0;
+	FILE* f = fopen (argv[1] , "r");
 	int i = 0;
-	//printf("Size: %d\n", length);
 	while (!feof (f))
 	{
-		if (i >= length - 1)
+		if (i >= count - 1)
 		{
-			length *= 2;
-			list = realloc(list, length*sizeof(int));
-			//printf("Reallocing, new size: %d\n", length);
+			count *= 2;
+			list = realloc(list, count*sizeof(int));
 		}
-		fscanf (f, "%d", &num);
-		list[i] = num;
+		fscanf (f, "%d", &list[i]);
 		i ++;
 	}
 	fclose (f);
-	length = i;
-	list = realloc(list, length*sizeof(int));
-	printList(list, length);
-	//*length = size;
+	count = i;
+	list = realloc(list, count*sizeof(int));
+	printList(list, count);
 	
-	// TODO: take input and chose sorting algorithm
+	// Take input and choose sorting algorithm
+	int selection = -1;
+	while (selection < 0 || selection > 3)
+	{
+		printf("Select sorting algorithm (1-3):\n");
+		printf("[1] Bubble sort\n");
+		printf("[2] Sort2\n");
+		printf("[3] Sort3\n");
 
-	// Sort the list
-	bubbleSort(list, length);
+		scanf("%d", &selection);
+	}
+	switch(selection)
+	{
+		case 1:
+			bubbleSort(list, count);
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+	}
 
 	// Print the list
-	printList(list, length);
+	printList(list, count);
 
 	// Searching for int
-	searchList(list, length);
+	searchList(list, count);
 
 	free(list);
 }
 
-void readFileContent(char *fileName, int *length, int *list)
-{
+/*{
 	FILE* f = fopen (fileName , "r");
 	int i = 0;
 	int size = 0;
@@ -66,7 +75,7 @@ void readFileContent(char *fileName, int *length, int *list)
 	}
 	fclose (f);
 	*length = size;
-}
+}*/
 
 void bubbleSort(int *list, int length)
 {
