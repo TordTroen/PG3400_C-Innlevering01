@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 
 // Function declarations
 void printList(int list[], int length);
