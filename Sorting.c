@@ -2,7 +2,6 @@
 #include<stdlib.h>
 
 // Function declarations
-void readFileContent(char *fileName, int *length, int *list);
 void bubbleSort(int *list, int length);
 void shellSort(int *list, int length);
 void insertSort(int *list, int length);
@@ -103,13 +102,13 @@ void insertSort(int *list, int length)
 {
 	int a, b, c;
 	for(a = 1; a <= length - 1; a++){
-	b = a;
-	while(b > 0 && list[b] < list[b-1]){
-		c = list[b];
-		list[b] = list[b-1];
-		list[b-1] = c;
+		b = a;
+		while(b > 0 && list[b] < list[b-1]){
+			c = list[b];
+			list[b] = list[b-1];
+			list[b-1] = c;
 
-		b--;
+			b--;
 		}
 	}
 }
@@ -131,7 +130,7 @@ void searchList(int list[], int length)
 		if (list[mid] < search)
 			low = mid + 1;
 		else if (list[mid] == search) {
-			printf("The integer(%d) is at location: %d\n", search, mid+1);
+			printf("The integer(%d) is at index: %d\n", search, mid);
 			break;
 		}
 		else
