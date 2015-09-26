@@ -2,7 +2,6 @@
 #include<stdlib.h>
 
 // Function declarations
-void printList(int *list, int length);
 void readFileContent(char *fileName, int *length, int *list);
 void bubbleSort(int *list, int length);
 void shellSort(int *list, int length);
@@ -11,12 +10,12 @@ void searchList(int list[], int length);
 
 int main(int argc, char *argv[])
 {
-	int *list, count = 5;
+	char *fileName = argv[1];
+	int *list, count = 5, i = 0;
 	list = (int*)malloc(count*sizeof(int));
 
 	// Read numbers from file to list
-	FILE* f = fopen (argv[1] , "r");
-	int i = 0;
+	FILE* f = fopen (fileName , "r");
 	while (!feof (f))
 	{
 		if (i >= count - 1)
@@ -30,7 +29,6 @@ int main(int argc, char *argv[])
 	fclose (f);
 	count = i;
 	list = realloc(list, count*sizeof(int));
-	printList(list, count);
 	
 	// Take input and choose sorting algorithm
 	int selection = -1;
@@ -56,37 +54,14 @@ int main(int argc, char *argv[])
 			break;
 	}
 
-	// Print the list
-	printList(list, count);
-
-	// Searching for int
 	searchList(list, count);
 
 	free(list);
 }
 
-/*{
-	FILE* f = fopen (fileName , "r");
-	int i = 0;
-	int size = 0;
-	while (!feof (f))
-	{
-		fscanf (f, "%d", &i);
-		list[size] = i;
-
-		if (feof(f)) break;
-		size ++;
-	}
-	fclose (f);
-	*length = size;
-}*/
-
 void bubbleSort(int *list, int length)
 {
-	int keepSorting = 1;
-	int i = 0;
-	int j = 0;
-
+	int keepSorting = 1, i = 0, j = 0;
 	while(keepSorting != 0)
 	{
 		keepSorting = 0;
@@ -136,15 +111,6 @@ void insertSort(int *list, int length)
 
 		b--;
 		}
-	}
-}
-
-// Debug only, remove
-void printList(int *list, int length)
-{
-	for (int i = 0; i < length; i ++)
-	{
-		printf("List[%d]=%d\n", i, list[i]);
 	}
 }
 
