@@ -89,16 +89,16 @@ void bubbleSort(int *list, int length)
 
 void shellSort(int *list, int length)
 {
-	int i, j, k, t;
+	int i, j, k, tm;
 	for(i = length / 2; i > 0; i = i / 2){
 		for(j = i; j < length; j++){
 			for(k = j - i; k >= 0; k = k - i){
 				if(list[k+i] >= list[k])
 					break;
 				else{
-					t = list[k];
+					tm = list[k];
 					list[k] = list[k+i];
-					list[k+i] = t;
+					list[k+i] = tm;
 				}
 			}
 		}
