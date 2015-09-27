@@ -9,6 +9,13 @@ void searchList(int list[], int length);
 
 int main(int argc, char *argv[])
 {
+	// Make sure there is a filename argument to avoid error
+	if (argc <= 1)
+	{
+		printf("No filename argument found, please ry again.\n");
+		exit(0);
+	}
+
 	char *fileName = argv[1];
 	int *list, count = 5, i = 0;
 	list = (int*)malloc(count*sizeof(int));
@@ -124,7 +131,7 @@ void searchList(int list[], int length)
 	scanf("%d", &search);
 
 	if (search == 0)
-                        exit(0);
+    	exit(0);
 
 	while (low <= high) {
 		if (list[mid] < search)
